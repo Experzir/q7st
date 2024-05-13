@@ -39,19 +39,16 @@ func maxPath(arr [][]int, row, col int, check map[[2]int]int) int {
 		return val
 	}
 
-	// Base case: If row is at the bottom of the triangle
 	if row == len(arr)-1 {
 		return arr[row][col]
 	}
 
-	// Call maxPath recursively for the area beneath the triangle and select the path with the maximum value
 	left := maxPath(arr, row+1, col, check)
 	right := maxPath(arr, row+1, col+1, check)
 
-	// Select the path with the maximum value at each level
 	maxValue := arr[row][col] + maxNum(left, right)
 
-	// Memoize the result for the current position
+	// set value
 	check[[2]int{row, col}] = maxValue
 
 	return maxValue
